@@ -9,7 +9,7 @@ $stmt =$con->prepare("SELECT * FROM visites WHERE `visite_user` = ? ");
 
  $stmt ->execute(array($userid)) ;
 
-$data = $stmt->fetch(PDO::FETCH_ASSOC);
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
  $count =$stmt-> rowCount();
 if($count > 0){
