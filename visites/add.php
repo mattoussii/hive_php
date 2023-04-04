@@ -7,22 +7,29 @@ $content = filterRequest("content");
 $date    = filterRequest("date");
 $userid  = filterRequest("id");
 
+$imagename = imageUpload("file") ;
 
+if($imagename != 'fail'){
 
+        $stmt =$con->prepare("
+    INSERT INTO `visites`( `visite_title`, `visite_content`, `visite_date`,`visite_user`,`visite_image`)
+    VALUES ( ? , ? , ? , ? , ? )
+    ");
 
-$stmt =$con->prepare("
-INSERT INTO `visites`( `visite_title`, `visite_content`, `visite_date`,`visite_user`)
- VALUES ( ? , ? , ? , ? )
- ");
+    $stmt ->execute(array( $title , $content , $date , $userid ,$imagename));
 
- $stmt ->execute(array( $title , $content , $date , $userid ));
+    $count =$stmt-> rowCount();
+    
+    if($count > 0){
+        echo json_encode(array("status" => "success")) ; 
+    }else {
+        echo json_encode(array("status"=>"failed")) ;
+    }
 
- $count =$stmt-> rowCount();
- 
-if($count > 0){
-    echo json_encode(array("status" => "success")) ; 
-}else {
+}else{
     echo json_encode(array("status"=>"failed")) ;
 }
+
+
 
 ?>

@@ -2,8 +2,8 @@
 
 include "../connect.php" ;
  
-$visiteid = filterRequest("id");
-
+$visiteid  = filterRequest("id");
+$imagename = filterRequest("imagename") ;
 
 $stmt =$con->prepare("DELETE FROM visites WHERE `visite_id` = ?");
 
@@ -11,6 +11,7 @@ $stmt =$con->prepare("DELETE FROM visites WHERE `visite_id` = ?");
 
  $count =$stmt-> rowCount();
 if($count > 0){
+    deleteFile("../upload" , $imagename) ;
     echo json_encode(array("status" => "success")) ; 
 }else {
     echo json_encode(array("status"=>"failed")) ;
