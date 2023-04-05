@@ -27,7 +27,7 @@ function imageUpload( $imagRequest){
       $msgError[] = "Ext" ;
    }
 
-   if($imagesize > 2 * MB ){
+   if($imagesize > 10 * MB ){
       $msgError ="size" ;
    }
    if(empty($msgError)){
