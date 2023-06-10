@@ -54,8 +54,8 @@ function deleteFile($dir , $imagename){
 }
 
  // protect api with authentification
+ 
 function checkAuthenticate(){
-
    if (isset($_SERVER['PHP_AUTH_USER'])  && isset($_SERVER['PHP_AUTH_PW'])) {
       if ($_SERVER['PHP_AUTH_USER'] != "aymen mattoussi" ||  $_SERVER['PHP_AUTH_PW'] != "123456"){
          header('WWW-Authenticate: Basic realm="My Realm"');
